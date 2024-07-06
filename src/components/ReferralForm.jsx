@@ -60,7 +60,7 @@ const ReferEarnLandingPage = (props) => {
 
     if (validateForm(form, setErrors)) {
       console.log("Form-Data :: ", form);
-      const BACKEND_URL = `https://accredian-backend-task-twig.onrender.com/api/referral`;
+      const BACKEND_URL = `https://accredian-backend-task-j3zr.onrender.com/api/referral`;
 
       try {
         const response = await fetch(BACKEND_URL, {
