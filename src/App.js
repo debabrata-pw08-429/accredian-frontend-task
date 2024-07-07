@@ -1,5 +1,6 @@
 import "./App.css";
 import { useState } from "react";
+import { Toaster } from "react-hot-toast";
 import Header from "./components/Header";
 import HeroSection from "./components/HeroSection";
 import HowToReferSection from "./components/HowToReferSection";
@@ -20,6 +21,18 @@ function App() {
       <ReferralBenefitsSection setOpen={setOpen} />
       <FAQSection />
       <Footer />
+
+      <Toaster
+        position="top-center"
+        toastOptions={{
+          duration: 5000,
+          style: {
+            background: "black",
+            color: "white",
+            fontWeight: "600",
+          },
+        }}
+      />
     </div>
   );
 }

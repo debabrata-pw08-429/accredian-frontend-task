@@ -78,7 +78,11 @@ const Header = () => {
                   alt="Accredian Logo"
                   style={{ width: "110px", height: "50px" }}
                 />
-                <Button variant="contained" color="primary">
+                <Button
+                  variant="contained"
+                  color="primary"
+                  href="https://accredian.com/whyaccredian"
+                >
                   Courses
                   <ExpandMoreIcon />
                 </Button>
@@ -94,7 +98,11 @@ const Header = () => {
                   <Typography variant="body1">About us</Typography>
                 </Box>
                 <Box component="li">
-                  <Button variant="outlined" color="primary">
+                  <Button
+                    variant="outlined"
+                    color="primary"
+                    href="https://accredian.com/login"
+                  >
                     Login
                   </Button>
                 </Box>
@@ -134,8 +142,23 @@ const Header = () => {
             <ListItemText primary="About us" />
           </ListItem>
           <ListItem button onClick={handleDrawerToggle}>
-            <Button variant="outlined" color="primary" fullWidth>
+            <Button
+              variant="outlined"
+              color="primary"
+              fullWidth
+              href="https://accredian.com/login"
+            >
               Login
+            </Button>
+          </ListItem>
+          <ListItem button onClick={handleDrawerToggle}>
+            <Button
+              variant="contained"
+              color="primary"
+              fullWidth
+              href="https://accredian.com/whyaccredian"
+            >
+              Courses
             </Button>
           </ListItem>
           <ListItem button onClick={handleDrawerToggle}>

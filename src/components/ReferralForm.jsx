@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 import {
   Button,
   Dialog,
@@ -12,6 +13,7 @@ import {
   FormControl,
   Typography,
   Grid,
+  Box,
 } from "@mui/material";
 import { styled } from "@mui/system";
 import WarningIcon from "@mui/icons-material/Warning";
@@ -19,7 +21,7 @@ import { courses } from "../data/staticdata";
 import { validateForm } from "../utils/formValidations";
 
 const StyledTextField = styled(TextField)(({ theme }) => ({
-  marginBottom: theme.spacing(1),
+  marginBottom: theme.spacing(2),
   "&.Mui-error": {
     backgroundColor: "#ffe6e6",
   },
@@ -29,7 +31,10 @@ const ErrorMessage = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   color: "red",
-  marginTop: theme.spacing(0.5),
+  marginTop: "-8px",
+  marginBottom: theme.spacing(3),
+  fontSize: "12px",
+  gap: "3px",
 }));
 
 const ReferEarnLandingPage = (props) => {
@@ -59,7 +64,6 @@ const ReferEarnLandingPage = (props) => {
     e.preventDefault();
 
     if (validateForm(form, setErrors)) {
-      console.log("Form-Data :: ", form);
       const BACKEND_URL = `https://accredian-backend-task-j3zr.onrender.com/api/referral`;
 
       try {
@@ -72,11 +76,15 @@ const ReferEarnLandingPage = (props) => {
         });
 
         if (!response.ok) {
-          throw new Error("Network response was not ok");
+          toast.error("Network response was not ok!");
+          throw new Error("Network response was not ok!");
         }
 
         const data = await response.json();
-        console.log("Success :: ", data);
+
+        if (data) {
+          toast.success("Referral mail sent successfully!");
+        }
 
         handleClose();
         setForm({
@@ -103,12 +111,15 @@ const ReferEarnLandingPage = (props) => {
           <Typography variant="h4" align="center" color="black">
             Referral Form
           </Typography>
+          <hr />
         </DialogTitle>
         <DialogContent>
           <form onSubmit={handleSubmit}>
-            <Grid container spacing={2}>
+            <Grid container spacing={3}>
               <Grid item xs={12} sm={6}>
-                <Typography variant="h6">Referrer Details</Typography>
+                <Box mb={2}>
+                  <Typography variant="h6">Referrer Details</Typography>
+                </Box>
                 <StyledTextField
                   error={!!errors.referrer}
                   name="referrer"
@@ -121,7 +132,7 @@ const ReferEarnLandingPage = (props) => {
                 />
                 {errors.referrer && (
                   <ErrorMessage>
-                    <WarningIcon fontSize="small" />
+                    <WarningIcon sx={{ fontSize: "15px" }} />
                     <span>{errors.referrer}</span>
                   </ErrorMessage>
                 )}
@@ -137,7 +148,7 @@ const ReferEarnLandingPage = (props) => {
                 />
                 {errors.referrerEmail && (
                   <ErrorMessage>
-                    <WarningIcon fontSize="small" />
+                    <WarningIcon sx={{ fontSize: "15px" }} />
                     <span>{errors.referrerEmail}</span>
                   </ErrorMessage>
                 )}
@@ -154,7 +165,9 @@ const ReferEarnLandingPage = (props) => {
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <Typography variant="h6">Referee Details</Typography>
+                <Box mb={2}>
+                  <Typography variant="h6">Referee Details</Typography>
+                </Box>
                 <StyledTextField
                   error={!!errors.referee}
                   name="referee"
@@ -167,7 +180,7 @@ const ReferEarnLandingPage = (props) => {
                 />
                 {errors.referee && (
                   <ErrorMessage>
-                    <WarningIcon fontSize="small" />
+                    <WarningIcon sx={{ fontSize: "15px" }} />
                     <span>{errors.referee}</span>
                   </ErrorMessage>
                 )}
@@ -183,7 +196,7 @@ const ReferEarnLandingPage = (props) => {
                 />
                 {errors.refereeEmail && (
                   <ErrorMessage>
-                    <WarningIcon fontSize="small" />
+                    <WarningIcon sx={{ fontSize: "15px" }} />
                     <span>{errors.refereeEmail}</span>
                   </ErrorMessage>
                 )}
@@ -199,7 +212,7 @@ const ReferEarnLandingPage = (props) => {
                 />
                 {errors.refereeContact && (
                   <ErrorMessage>
-                    <WarningIcon fontSize="small" />
+                    <WarningIcon sx={{ fontSize: "15px" }} />
                     <span>{errors.refereeContact}</span>
                   </ErrorMessage>
                 )}
@@ -215,7 +228,7 @@ const ReferEarnLandingPage = (props) => {
                 />
                 {errors.refereeAddress && (
                   <ErrorMessage>
-                    <WarningIcon fontSize="small" />
+                    <WarningIcon sx={{ fontSize: "15px" }} />
                     <span>{errors.refereeAddress}</span>
                   </ErrorMessage>
                 )}
@@ -238,7 +251,7 @@ const ReferEarnLandingPage = (props) => {
                 </FormControl>
                 {errors.field && (
                   <ErrorMessage>
-                    <WarningIcon fontSize="small" />
+                    <WarningIcon sx={{ fontSize: "15px" }} />
                     <span>{errors.field}</span>
                   </ErrorMessage>
                 )}
@@ -261,7 +274,7 @@ const ReferEarnLandingPage = (props) => {
                 </FormControl>
                 {errors.course && (
                   <ErrorMessage>
-                    <WarningIcon fontSize="small" />
+                    <WarningIcon sx={{ fontSize: "15px" }} />
                     <span>{errors.course}</span>
                   </ErrorMessage>
                 )}
