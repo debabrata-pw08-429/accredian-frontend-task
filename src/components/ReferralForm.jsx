@@ -64,7 +64,7 @@ const ReferEarnLandingPage = (props) => {
     e.preventDefault();
 
     if (validateForm(form, setErrors)) {
-      const BACKEND_URL = `https://accredian-backend-task-j3zr.onrender.com/api/referral`;
+      const BACKEND_URL = `https://accredian-backend-task-ppfo.onrender.com/api/referral`;
 
       try {
         const response = await fetch(BACKEND_URL, {
